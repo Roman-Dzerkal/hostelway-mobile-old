@@ -15,9 +15,9 @@ class LoginView extends StatelessWidget {
       viewModelBuilder: () => LoginViewModel(),
       onViewModelReady: (viewModel) {},
       builder: (context, model, child) {
-        return Scaffold(
-          body: SafeArea(
-            child: Padding(
+        return SafeArea(
+          child: Scaffold(
+            body: Padding(
               padding: const EdgeInsets.all(20.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -26,14 +26,17 @@ class LoginView extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text('Email', style: lableLarge),
-                      TextField(
-                        controller: model.emailController,
-                        maxLines: 1,
-                        decoration: InputDecoration(
-                            hintText: 'Enter your email',
-                            prefixIcon: const Icon(CupertinoIcons.envelope),
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10))),
+                      Form(
+                        child: TextFormField(
+                          validator: (value) {},
+                          controller: model.emailController,
+                          maxLines: 1,
+                          decoration: InputDecoration(
+                              hintText: 'Enter your email',
+                              prefixIcon: const Icon(CupertinoIcons.envelope),
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10))),
+                        ),
                       ),
                     ],
                   ),
@@ -41,22 +44,25 @@ class LoginView extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text('Password', style: lableLarge),
-                      TextField(
-                        controller: model.passwordController,
-                        maxLines: 1,
-                        obscureText: model.obscurePassword,
-                        obscuringCharacter: '*',
-                        decoration: InputDecoration(
-                            hintText: 'Enter your password',
-                            prefixIcon: const Icon(CupertinoIcons.lock),
-                            suffixIcon: IconButton(
-                              onPressed: model.unhidePassword,
-                              icon: Icon(model.obscurePassword
-                                  ? CupertinoIcons.eye
-                                  : CupertinoIcons.eye_slash),
-                            ),
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10))),
+                      Form(
+                        child: TextFormField(
+                          validator: (value) {},
+                          controller: model.passwordController,
+                          maxLines: 1,
+                          obscureText: model.obscurePassword,
+                          obscuringCharacter: '*',
+                          decoration: InputDecoration(
+                              hintText: 'Enter your password',
+                              prefixIcon: const Icon(CupertinoIcons.lock),
+                              suffixIcon: IconButton(
+                                onPressed: model.unhidePassword,
+                                icon: Icon(model.obscurePassword
+                                    ? CupertinoIcons.eye
+                                    : CupertinoIcons.eye_slash),
+                              ),
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10))),
+                        ),
                       ),
                     ],
                   ),

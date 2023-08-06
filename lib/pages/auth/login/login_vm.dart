@@ -7,6 +7,8 @@ class LoginViewModel extends BaseViewModel {
 
   bool obscurePassword = true;
 
+  final RegExp emailRegex = RegExp('source');
+
   void unhidePassword() {
     obscurePassword = !obscurePassword;
     notifyListeners();

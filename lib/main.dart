@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:hostelway/pages/auth/login/login_view.dart';
+import 'package:hostelway/pages/auth/registration/registration_view.dart';
+
+bool goLogin = false;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
   runApp(const MyApp());
 }
 
@@ -12,10 +14,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'HostelWay',
-      home: LoginView(),
+      home: goLogin ? const LoginView() : const RegistrationView(),
     );
   }
 }

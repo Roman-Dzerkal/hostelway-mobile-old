@@ -1,6 +1,3 @@
-import 'dart:html';
-import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -72,36 +69,52 @@ class RegistrationView extends StatelessWidget {
                           borderRadius: BorderRadius.circular(15))),
                 ),
               ),
-              Form(
-                key: model.confirmPasswordValidatorKey,
-                child: TextFormField(
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Password canot be empty';
-                    }
-                    return null;
-                  },
-                  controller: model.confirmPasswordController,
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15)),
-                      hintText: 'Confirm password',
-                      prefixIcon: const Icon(CupertinoIcons.lock),
-                      errorBorder: OutlineInputBorder(
-                          gapPadding: 50,
-                          borderRadius: BorderRadius.circular(15),
-                          borderSide: const BorderSide(
-                            color: Colors.red,
-                          ))),
+              Container(
+                decoration: BoxDecoration(
+                    boxShadow: model.shadows,
+                    borderRadius: BorderRadius.circular(15)),
+                child: Form(
+                  key: model.confirmPasswordValidatorKey,
+                  child: TextFormField(
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Password canot be empty';
+                      }
+                      return null;
+                    },
+                    controller: model.confirmPasswordController,
+                    decoration: InputDecoration(
+                        filled: true,
+                        fillColor: Colors.white,
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15)),
+                        hintText: 'Confirm password',
+                        prefixIcon: const Icon(CupertinoIcons.lock),
+                        errorBorder: OutlineInputBorder(
+                            gapPadding: 50,
+                            borderRadius: BorderRadius.circular(15),
+                            borderSide: const BorderSide(
+                              color: Colors.red,
+                            ))),
+                  ),
                 ),
               ),
-              TextFormField(
-                controller: model.emailController,
-                decoration: InputDecoration(
-                    hintText: '+380',
-                    prefixIcon: const Icon(CupertinoIcons.phone_fill),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15))),
+              Container(
+                decoration: BoxDecoration(
+                    boxShadow: model.shadows,
+                    borderRadius: BorderRadius.circular(15)),
+                child: Form(
+                  child: TextFormField(
+                    controller: model.emailController,
+                    decoration: InputDecoration(
+                        filled: true,
+                        fillColor: Colors.white,
+                        hintText: '+380',
+                        prefixIcon: const Icon(CupertinoIcons.phone_fill),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15))),
+                  ),
+                ),
               ),
               ToggleSwitch(
                 minWidth: 90.0,
@@ -113,15 +126,15 @@ class RegistrationView extends StatelessWidget {
                 activeFgColor: Colors.white,
                 inactiveBgColor: Colors.white,
                 inactiveFgColor: Colors.black,
-                borderColor: [Colors.black],
-                borderWidth: 1,
+                borderColor: const [Colors.black],
+                borderWidth: 0.5,
                 initialLabelIndex: 1,
                 totalSwitches: 2,
                 fontSize: 16,
-                labels: ['Guest', 'Manager'],
+                labels: model.roles,
                 radiusStyle: true,
                 onToggle: (index) {
-                  print('switched to: $index');
+                  model.selectedRoleIndex = index!;
                 },
               ),
               Row(
@@ -138,7 +151,14 @@ class RegistrationView extends StatelessWidget {
                               CustomColors.primaryColor,
                               CustomColors.secondaryColor
                             ])),
-                        child: const Center(child: Text('Register')),
+                        child: const Center(
+                            child: Text(
+                          'Register',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold),
+                        )),
                       ),
                     ),
                   ),

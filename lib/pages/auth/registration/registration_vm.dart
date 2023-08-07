@@ -14,6 +14,7 @@ class RegistrationViewModel extends BaseViewModel {
       GlobalKey<FormState>();
 
   List<String> roles = const ['Guest', 'Manager'];
+  int selectedRoleIndex = 1;
 
   final shadows = const [
     BoxShadow(
@@ -27,11 +28,12 @@ class RegistrationViewModel extends BaseViewModel {
   void validate() {}
 
   Future<void> sendRequest(BuildContext context) async {
-    AppState.instance.user!.role;
-
-    String role = 'manager';
-    final user = await signUp(emailController.text, passwordController.text,
-        role, nameController.text, phoneNumberController.text);
+    final user = await signUp(
+        emailController.text,
+        passwordController.text,
+        roles[selectedRoleIndex],
+        nameController.text,
+        phoneNumberController.text);
     Navigator.of(context).pushNamed('/login');
   }
 }

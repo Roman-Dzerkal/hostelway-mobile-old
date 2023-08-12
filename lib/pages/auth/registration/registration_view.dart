@@ -3,8 +3,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:hostelway/helpers/configs.dart';
 import 'package:hostelway/helpers/custom_color.dart';
 import 'package:hostelway/helpers/typography.dart';
 import 'package:hostelway/pages/auth/registration/registration_vm.dart';

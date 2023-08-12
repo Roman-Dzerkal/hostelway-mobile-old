@@ -10,7 +10,7 @@ class LoginView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Don't remove this object. It needed to adaptive layout
-    final Size screenSize = MediaQuery.of(context).size;
+    // final Size screenSize = MediaQuery.of(context).size;
     return ViewModelBuilder<LoginViewModel>.reactive(
       viewModelBuilder: () => LoginViewModel(),
       onViewModelReady: (viewModel) {},
@@ -28,7 +28,9 @@ class LoginView extends StatelessWidget {
                       Text('Email', style: lableLarge),
                       Form(
                         child: TextFormField(
-                          validator: (value) {},
+                          validator: (value) {
+                            return null;
+                          },
                           controller: model.emailController,
                           maxLines: 1,
                           decoration: InputDecoration(
@@ -46,7 +48,9 @@ class LoginView extends StatelessWidget {
                       Text('Password', style: lableLarge),
                       Form(
                         child: TextFormField(
-                          validator: (value) {},
+                          validator: (value) {
+                            return null;
+                          },
                           controller: model.passwordController,
                           maxLines: 1,
                           obscureText: model.obscurePassword,

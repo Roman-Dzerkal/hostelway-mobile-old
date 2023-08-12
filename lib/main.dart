@@ -1,23 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:hostelway/pages/auth/login/login_view.dart';
-import 'package:hostelway/pages/auth/registration/registration_view.dart';
-
-bool goLogin = false;
+import 'package:go_router/go_router.dart';
+import 'package:hostelway/helpers/configs.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const MyApp());
-}
+  final GoRouter router = configAppRouting();
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  logger.i('Hello, Hostelway!');
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'HostelWay',
-      home: goLogin ? const LoginView() : const RegistrationView(),
-    );
-  }
+  runApp(MaterialApp.router(
+    debugShowCheckedModeBanner: false,
+    title: 'HostelWay',
+    routerConfig: router,
+  ));
 }

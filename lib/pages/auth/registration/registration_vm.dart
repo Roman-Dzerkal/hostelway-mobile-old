@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hostelway/api_service.dart';
-import 'package:hostelway/app_state.dart';
+import 'package:hostelway/models/user_model.dart';
 import 'package:stacked/stacked.dart';
 
 class RegistrationViewModel extends BaseViewModel {
@@ -25,15 +25,27 @@ class RegistrationViewModel extends BaseViewModel {
     )
   ];
 
-  void validate() {}
+  final FocusNode unfocusNode = FocusNode();
 
-  Future<void> sendRequest(BuildContext context) async {
+  bool validate() {
+    return emailController.text.isNotEmpty ||
+        nameController.text.isNotEmpty ||
+        passwordController.text.isNotEmpty ||
+        confirmPasswordController.text.isNotEmpty ||
+        phoneNumberController.text.isNotEmpty;
+  }
+
+  Future<UserModel?> sendRequest(BuildContext context) async {
+    if (!validate()) {
+      throw Exception('Fill up all fields');
+    }
+
     final user = await signUp(
         emailController.text,
         passwordController.text,
         roles[selectedRoleIndex],
         nameController.text,
         phoneNumberController.text);
-    Navigator.of(context).pushNamed('/login');
+    return user;
   }
 }

@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'package:hostelway/models/user_model.dart';
 
 import 'helpers/constants.dart';
@@ -14,7 +13,7 @@ void login(String email, String password) {
   _dio.postUri(Uri.https(server, '/login'), data: formData);
 }
 
-Future<UserModel> signUp(String email, String password, String role,
+Future<UserModel>? signUp(String email, String password, String role,
     String name, String phoneNumber) async {
   FormData registrationData = FormData();
   try {

@@ -146,13 +146,7 @@ class RegistrationView extends StatelessWidget {
                     children: [
                       Expanded(
                         child: InkWell(
-                          onTap: () async {
-                            model.validate();
-                            /* UserModel? user = await model.sendRequest(context);
-                            if (user != null) {
-                              GoRouter.of(context).goNamed('/login');
-                            } */
-                          },
+                          onTap: () => model.sendRequest,
                           child: Container(
                             height: size.height * 0.05,
                             decoration: BoxDecoration(

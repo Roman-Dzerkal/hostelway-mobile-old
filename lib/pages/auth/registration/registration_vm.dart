@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hostelway/api_service.dart';
+import 'package:hostelway/helpers/configs.dart';
 import 'package:hostelway/models/user_model.dart';
 import 'package:stacked/stacked.dart';
 
@@ -37,7 +38,7 @@ class RegistrationViewModel extends BaseViewModel {
 
   Future<UserModel?> sendRequest(BuildContext context) async {
     if (!validate()) {
-      throw Exception('Fill up all fields');
+      logger.e('Fill up all fields');
     }
 
     final user = await signUp(

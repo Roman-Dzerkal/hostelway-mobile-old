@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hostelway/api_service.dart';
 import 'package:hostelway/helpers/configs.dart';
 import 'package:hostelway/models/user_model.dart';
@@ -29,24 +30,25 @@ class RegistrationViewModel extends BaseViewModel {
   final FocusNode unfocusNode = FocusNode();
 
   bool validate() {
-    return emailController.text.isNotEmpty ||
-        nameController.text.isNotEmpty ||
-        passwordController.text.isNotEmpty ||
-        confirmPasswordController.text.isNotEmpty ||
-        phoneNumberController.text.isNotEmpty;
+    return emailController.text.isEmpty ||
+        nameController.text.isEmpty ||
+        passwordController.text.isEmpty ||
+        confirmPasswordController.text.isEmpty ||
+        phoneNumberController.text.isEmpty;
   }
 
-  Future<UserModel?> sendRequest(BuildContext context) async {
+  Future<void> sendRequest(BuildContext context) async {
     if (!validate()) {
       logger.e('Fill up all fields');
     }
-
-    final user = await signUp(
+    final UserModel? user = await signUp(
         emailController.text,
         passwordController.text,
         roles[selectedRoleIndex],
         nameController.text,
         phoneNumberController.text);
-    return user;
+    if (user != null) {
+      GoRouter.of(context).go('/login');
+    }
   }
 }

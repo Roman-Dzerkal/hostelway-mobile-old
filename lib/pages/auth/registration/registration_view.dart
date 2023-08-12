@@ -3,6 +3,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:hostelway/helpers/configs.dart';
 import 'package:hostelway/helpers/custom_color.dart';
 import 'package:hostelway/helpers/typography.dart';
 import 'package:hostelway/pages/auth/registration/registration_vm.dart';
@@ -146,7 +148,9 @@ class RegistrationView extends StatelessWidget {
                     children: [
                       Expanded(
                         child: InkWell(
-                          onTap: () => model.sendRequest,
+                          onTap: () async {
+                            await model.sendRequest(context);
+                          },
                           child: Container(
                             height: size.height * 0.05,
                             decoration: BoxDecoration(

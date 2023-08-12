@@ -1,6 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:hostelway/pages/auth/login/login_view.dart';
 import 'package:hostelway/pages/auth/registration/registration_view.dart';
+import 'package:hostelway/pages/profile/profile_view.dart';
 import 'package:logger/logger.dart';
 
 bool goLogin = false;
@@ -18,9 +19,11 @@ GoRouter configAppRouting() {
       name: 'Registration page',
       builder: (context, state) => const RegistrationView(),
     ),
-
-    /// Dummy. Builder for this page will be soon
-    // GoRoute(path: '/profile', name: 'Main profile page'),
+    GoRoute(
+      path: '/profile',
+      name: 'Main profile page',
+      builder: (context, state) => const ProfileView(),
+    ),
   ]);
 }
 

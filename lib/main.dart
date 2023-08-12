@@ -6,7 +6,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final GoRouter router = configAppRouting();
 
-  logger.i('Hello, Hostelway!');
+  logger.i('Welcome to Hostelway!');
 
   runApp(MaterialApp.router(
     debugShowCheckedModeBanner: false,

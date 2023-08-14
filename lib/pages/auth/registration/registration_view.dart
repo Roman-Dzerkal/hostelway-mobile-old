@@ -8,6 +8,7 @@ import 'package:hostelway/helpers/typography.dart';
 import 'package:hostelway/pages/auth/registration/registration_vm.dart';
 import 'package:stacked/stacked.dart';
 import 'package:toggle_switch/toggle_switch.dart';
+import 'package:go_router/go_router.dart';
 
 class RegistrationView extends StatelessWidget {
   const RegistrationView({Key? key}) : super(key: key);
@@ -39,7 +40,7 @@ class RegistrationView extends StatelessWidget {
                           fillColor: Colors.white,
                           hintText: 'Enter your first and last name',
                           prefixIcon: const Icon(CupertinoIcons.person),
-                          border: OutlineInputBorder(
+                          border: UnderlineInputBorder(
                               borderRadius: BorderRadius.circular(15))),
                     ),
                   ),
@@ -54,7 +55,7 @@ class RegistrationView extends StatelessWidget {
                           fillColor: Colors.white,
                           hintText: 'Enter your email',
                           prefixIcon: const Icon(CupertinoIcons.envelope),
-                          border: OutlineInputBorder(
+                          border: UnderlineInputBorder(
                               borderRadius: BorderRadius.circular(15))),
                     ),
                   ),
@@ -69,7 +70,7 @@ class RegistrationView extends StatelessWidget {
                           fillColor: Colors.white,
                           hintText: 'Enter your password',
                           prefixIcon: const Icon(CupertinoIcons.lock),
-                          border: OutlineInputBorder(
+                          border: UnderlineInputBorder(
                               borderRadius: BorderRadius.circular(15))),
                     ),
                   ),
@@ -90,7 +91,7 @@ class RegistrationView extends StatelessWidget {
                         decoration: InputDecoration(
                             filled: true,
                             fillColor: Colors.white,
-                            border: OutlineInputBorder(
+                            border: UnderlineInputBorder(
                                 borderRadius: BorderRadius.circular(15)),
                             hintText: 'Confirm password',
                             prefixIcon: const Icon(CupertinoIcons.lock),
@@ -115,7 +116,7 @@ class RegistrationView extends StatelessWidget {
                             fillColor: Colors.white,
                             hintText: '+380',
                             prefixIcon: const Icon(CupertinoIcons.phone_fill),
-                            border: OutlineInputBorder(
+                            border: UnderlineInputBorder(
                                 borderRadius: BorderRadius.circular(15))),
                       ),
                     ),
@@ -182,6 +183,7 @@ class RegistrationView extends StatelessWidget {
                           mouseCursor: SystemMouseCursors.click,
                           recognizer: TapGestureRecognizer()
                             ..onTap = () async {
+                              GoRouter.of(context).go('/login');
                               debugPrint('Я хачу питсы');
                             },
                         )

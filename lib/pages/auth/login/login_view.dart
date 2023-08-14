@@ -3,12 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:hostelway/helpers/typography.dart';
 import 'package:hostelway/pages/auth/login/login_vm.dart';
 import 'package:stacked/stacked.dart';
+import 'package:hostelway/api_service.dart';
+import 'package:go_router/go_router.dart';
+import 'package:hostelway/helpers/custom_color.dart';
+import 'package:hostelway/helpers/typography.dart';
+
 
 class LoginView extends StatelessWidget {
   const LoginView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     // Don't remove this object. It needed to adaptive layout
     // final Size screenSize = MediaQuery.of(context).size;
     return ViewModelBuilder<LoginViewModel>.reactive(
@@ -22,67 +28,71 @@ class LoginView extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('Email', style: lableLarge),
-                      Form(
-                        child: TextFormField(
-                          validator: (value) {
-                            return null;
-                          },
-                          controller: model.emailController,
-                          maxLines: 1,
-                          decoration: InputDecoration(
-                              hintText: 'Enter your email',
-                              prefixIcon: const Icon(CupertinoIcons.envelope),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10))),
-                        ),
+                  Text('Login', style: headlineLarge),
+                  SizedBox(height: 40),
+                  Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
                       ),
-                    ],
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('Password', style: lableLarge),
-                      Form(
-                        child: TextFormField(
-                          validator: (value) {
-                            return null;
-                          },
-                          controller: model.passwordController,
-                          maxLines: 1,
-                          obscureText: model.obscurePassword,
-                          obscuringCharacter: '*',
-                          decoration: InputDecoration(
-                              hintText: 'Enter your password',
-                              prefixIcon: const Icon(CupertinoIcons.lock),
-                              suffixIcon: IconButton(
-                                onPressed: model.unhidePassword,
-                                icon: Icon(model.obscurePassword
-                                    ? CupertinoIcons.eye
-                                    : CupertinoIcons.eye_slash),
-                              ),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10))),
+                      child: TextFormField(
+                        controller: model.emailController,
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: const Color(0xfffbfbfb),
+                          hintText: 'Your email',
+                          prefixIcon: const Icon(CupertinoIcons.envelope),
+                          border: UnderlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  Align(
-                    alignment: Alignment.center,
-                    child: TextButton(
-                      onPressed: () {},
-                      style: ButtonStyle(
-                          backgroundColor: MaterialStateColor.resolveWith(
-                              (states) => Colors.blueAccent)),
-                      child: const Text(
-                        'Login',
-                        style: TextStyle(color: Colors.white),
                       ),
                     ),
-                  )
+                    SizedBox(height: 40),
+                    Container(
+                    decoration: BoxDecoration(
+                    
+                    borderRadius: BorderRadius.circular(15)),
+                    child: TextFormField(
+                      controller: model.passwordController,
+                      decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Colors.white,
+                          hintText: 'Enter your password',
+                          prefixIcon: const Icon(CupertinoIcons.lock),
+                          border: UnderlineInputBorder(
+                              borderRadius: BorderRadius.circular(15))),
+                    ),
+                  ),
+                  SizedBox(height: 40),
+                 Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Expanded(
+                        child: InkWell(
+                          onTap: () async {
+                            GoRouter.of(context).go('/profile');
+                          },
+                          child: Container(
+                            height: size.height * 0.05,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                gradient: LinearGradient(colors: [
+                                  CustomColors.primaryColor,
+                                  CustomColors.secondaryColor
+                                ])),
+                            child: const Center(
+                                child: Text(
+                              'Login',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold),
+                            )),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),

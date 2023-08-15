@@ -54,7 +54,7 @@ class RegistrationView extends StatelessWidget {
                           fillColor: Colors.white,
                           hintText: 'Enter your email',
                           prefixIcon: const Icon(CupertinoIcons.envelope),
-                          border: OutlineInputBorder(
+                          border: UnderlineInputBorder(
                               borderRadius: BorderRadius.circular(15))),
                     ),
                   ),

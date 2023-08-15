@@ -14,6 +14,8 @@ void login(String email, String password) {
   _dio.postUri(Uri.https(server, '/login'), data: formData);
 }
 
+
+
 Future<UserModel?> signUp(String email, String password, String role,
     String name, String phoneNumber) async {
   FormData registrationData = FormData();
@@ -26,6 +28,7 @@ Future<UserModel?> signUp(String email, String password, String role,
   ]);
   Response<String> response = await _dio
       .postUri(Uri.https(server, 'registration'), data: registrationData);
+
 
   Map<String, dynamic> mapData =
       jsonDecode(response.data!) as Map<String, dynamic>;

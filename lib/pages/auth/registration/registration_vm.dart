@@ -38,9 +38,21 @@ class RegistrationViewModel extends BaseViewModel {
         confirmPasswordController.text.isEmpty ||
         phoneNumberController.text.isEmpty;
   }
+ bool isPasswordVisible = false;
+bool isConfirmPasswordVisible = false;
+
+  void PasswordVisibility() {
+    isPasswordVisible = !isPasswordVisible;
+    notifyListeners();
+  }
+  void ConfirmPasswordVisibility() {
+    isConfirmPasswordVisible = !isConfirmPasswordVisible;
+    notifyListeners();
+  }
+  
 
   Future<void> sendRequest(BuildContext context) async {
-    if (!validate()) {
+    if (validate()) {
       logger.e('Fill up all fields');
     }
     final UserModel? user = await signUp(
@@ -49,6 +61,7 @@ class RegistrationViewModel extends BaseViewModel {
         roles[selectedRoleIndex],
         nameController.text,
         phoneNumberController.text);
+    logger.e(user);
     if (user != null) {
       GoRouter.of(context).go('/login');
     }

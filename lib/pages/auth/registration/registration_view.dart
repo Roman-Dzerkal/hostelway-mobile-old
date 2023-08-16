@@ -31,7 +31,7 @@ class RegistrationView extends StatelessWidget {
                   children: [
                     SizedBox(height: 60),
                     Text('Sign Up', style: TextStyle(
-                          fontSize: 24, // Adjust the font size here
+                          fontSize: 24,
                           fontWeight: FontWeight.bold,
                         ),),
                     SizedBox(height: 40),
@@ -123,14 +123,14 @@ class RegistrationView extends StatelessWidget {
                             ),
                             hintText: 'Confirm password',
                             prefixIcon: const Icon(CupertinoIcons.lock),
-                            suffixIcon: IconButton( // Добавляем иконку для скрытия/показа пароля
+                            suffixIcon: IconButton( 
                               onPressed: () {
-                                model.ConfirmPasswordVisibility(); // Метод для изменения видимости пароля
+                                model.ConfirmPasswordVisibility();
                               },
                               icon: Icon(
-                                model.isConfirmPasswordVisible // В зависимости от состояния видимости пароля
-                                    ? CupertinoIcons.eye // Показываем зачеркнутый глаз - скрытый пароль
-                                    : CupertinoIcons.eye_slash, // Показываем обычный глаз - видимый пароль
+                                model.isConfirmPasswordVisible
+                                    ? CupertinoIcons.eye 
+                                    : CupertinoIcons.eye_slash, 
                               ),
                             ),
                             errorBorder: OutlineInputBorder(

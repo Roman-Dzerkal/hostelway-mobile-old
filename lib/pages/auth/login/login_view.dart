@@ -8,7 +8,6 @@ import 'package:go_router/go_router.dart';
 import 'package:hostelway/helpers/custom_color.dart';
 import 'package:hostelway/helpers/typography.dart';
 
-
 class LoginView extends StatelessWidget {
   const LoginView({Key? key}) : super(key: key);
 
@@ -29,32 +28,38 @@ class LoginView extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text('Login', style: headlineLarge),
-                  SizedBox(height: 40),
+                  const SizedBox(height: 40),
                   Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      child: TextFormField(
-                        controller: model.emailController,
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor: const Color(0xfffbfbfb),
-                          hintText: 'Your email',
-                          prefixIcon: const Icon(CupertinoIcons.envelope),
-                          border: UnderlineInputBorder(
-                            borderRadius: BorderRadius.circular(15),
-                          ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: TextFormField(
+                      controller: model.emailController,
+                      decoration: InputDecoration(
+                        filled: true,
+                        fillColor: const Color(0xfffbfbfb),
+                        hintText: 'Your email',
+                        prefixIcon: const Icon(CupertinoIcons.envelope),
+                        border: UnderlineInputBorder(
+                          borderRadius: BorderRadius.circular(15),
                         ),
                       ),
                     ),
-                    SizedBox(height: 40),
-                    Container(
-                    decoration: BoxDecoration(
-                    
-                    borderRadius: BorderRadius.circular(15)),
+                  ),
+                  const SizedBox(height: 40),
+                  Container(
+                    decoration:
+                        BoxDecoration(borderRadius: BorderRadius.circular(15)),
                     child: TextFormField(
+                      obscureText: model.obscurePassword,
                       controller: model.passwordController,
                       decoration: InputDecoration(
+                          suffixIcon: IconButton(
+                            onPressed: model.unhidePassword,
+                            icon: model.obscurePassword
+                                ? const Icon(CupertinoIcons.eye)
+                                : const Icon(CupertinoIcons.eye_slash),
+                          ),
                           filled: true,
                           fillColor: Colors.white,
                           hintText: 'Enter your password',
@@ -63,8 +68,8 @@ class LoginView extends StatelessWidget {
                               borderRadius: BorderRadius.circular(15))),
                     ),
                   ),
-                  SizedBox(height: 40),
-                 Row(
+                  const SizedBox(height: 40),
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Expanded(

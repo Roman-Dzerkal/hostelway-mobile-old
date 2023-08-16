@@ -23,17 +23,19 @@ class RegistrationView extends StatelessWidget {
           child: Scaffold(
             backgroundColor: const Color(0xfffbfbfb),
             body: SingleChildScrollView(
-             
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     SizedBox(height: 60),
-                    Text('Sign Up', style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                        ),),
+                    Text(
+                      'Sign Up',
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                     SizedBox(height: 40),
                     Container(
                       decoration: BoxDecoration(
@@ -93,7 +95,7 @@ class RegistrationView extends StatelessWidget {
                                   : CupertinoIcons.eye_slash,
                             ),
                             onPressed: () {
-                              model.PasswordVisibility();
+                              model.passwordVisibility();
                             },
                           ),
                         ),
@@ -123,14 +125,14 @@ class RegistrationView extends StatelessWidget {
                             ),
                             hintText: 'Confirm password',
                             prefixIcon: const Icon(CupertinoIcons.lock),
-                            suffixIcon: IconButton( 
+                            suffixIcon: IconButton(
                               onPressed: () {
-                                model.ConfirmPasswordVisibility();
+                                model.confirmPasswordVisibility();
                               },
                               icon: Icon(
                                 model.isConfirmPasswordVisible
-                                    ? CupertinoIcons.eye 
-                                    : CupertinoIcons.eye_slash, 
+                                    ? CupertinoIcons.eye
+                                    : CupertinoIcons.eye_slash,
                               ),
                             ),
                             errorBorder: OutlineInputBorder(
@@ -194,7 +196,6 @@ class RegistrationView extends StatelessWidget {
                           child: InkWell(
                             onTap: () async {
                               await model.sendRequest(context);
-                              GoRouter.of(context).go('/login');
                             },
                             child: Container(
                               height: size.height * 0.06,
@@ -222,7 +223,7 @@ class RegistrationView extends StatelessWidget {
                         ),
                       ],
                     ),
-                     SizedBox(height: 20),
+                    SizedBox(height: 20),
                     RichText(
                       softWrap: true,
                       text: TextSpan(

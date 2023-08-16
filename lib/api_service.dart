@@ -14,10 +14,8 @@ void login(String email, String password) {
   _dio.postUri(Uri.https(server, '/login'), data: formData);
 }
 
-
-
-Future<UserModel?> signUp(String email, String password, String role,
-    String name, String phoneNumber) async {
+Future<bool> signUp(String email, String password, String role, String name,
+    String phoneNumber) async {
   FormData registrationData = FormData();
   registrationData.fields.addAll([
     MapEntry('email', email),
@@ -29,16 +27,14 @@ Future<UserModel?> signUp(String email, String password, String role,
   Response<String> response = await _dio
       .postUri(Uri.https(server, 'registration'), data: registrationData);
 
-
   Map<String, dynamic> mapData =
       jsonDecode(response.data!) as Map<String, dynamic>;
 
   if (mapData['message'] != successRegistrationMessage) {
     logger.e(mapData['server'], error: mapData['message']);
-    return null;
+    return false;
   }
 
   logger.i(mapData['message']);
-
-  return UserModel.fromJson(mapData);
+  return true;
 }

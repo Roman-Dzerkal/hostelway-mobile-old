@@ -1,10 +1,8 @@
-import 'package:stacked/stacked.dart';
-import 'package:flutter/material.dart';
 import 'dart:io';
+
+import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:hostelway/api_service.dart';
-import 'package:hostelway/helpers/configs.dart';
-import 'package:hostelway/models/user_model.dart';
+import 'package:stacked/stacked.dart';
 
 class ProfileViewModel extends BaseViewModel {
 

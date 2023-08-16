@@ -38,31 +38,31 @@ class RegistrationViewModel extends BaseViewModel {
         confirmPasswordController.text.isEmpty ||
         phoneNumberController.text.isEmpty;
   }
- bool isPasswordVisible = false;
-bool isConfirmPasswordVisible = false;
 
-  void PasswordVisibility() {
+  bool isPasswordVisible = false;
+  bool isConfirmPasswordVisible = false;
+
+  void passwordVisibility() {
     isPasswordVisible = !isPasswordVisible;
     notifyListeners();
   }
-  void ConfirmPasswordVisibility() {
+
+  void confirmPasswordVisibility() {
     isConfirmPasswordVisible = !isConfirmPasswordVisible;
     notifyListeners();
   }
-  
 
   Future<void> sendRequest(BuildContext context) async {
     if (validate()) {
       logger.e('Fill up all fields');
     }
-    final UserModel? user = await signUp(
+    bool isSignedUp = await signUp(
         emailController.text,
         passwordController.text,
         roles[selectedRoleIndex],
         nameController.text,
         phoneNumberController.text);
-    logger.e(user);
-    if (user != null) {
+    if (isSignedUp) {
       GoRouter.of(context).go('/login');
     }
   }

@@ -75,7 +75,8 @@ class LoginView extends StatelessWidget {
                       Expanded(
                         child: InkWell(
                           onTap: () async {
-                            GoRouter.of(context).go('/profile');
+                           model.sendRequest(context);
+
                           },
                           child: Container(
                             height: size.height * 0.05,

@@ -18,7 +18,7 @@ class UserModel {
       email: json['email'],
       name: json['name'],
       role: json['role'] == 'manager' ? Roles.manager : Roles.guest,
-      phoneNumber: json['phone_number'],
+      // phoneNumber: json['phone_number'],
     );
   }
 

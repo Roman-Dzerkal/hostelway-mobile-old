@@ -4,7 +4,7 @@ import 'package:hostelway/pages/auth/registration/registration_view.dart';
 import 'package:hostelway/pages/profile/profile_view.dart';
 import 'package:logger/logger.dart';
 
-bool goLogin = false;
+bool goLogin = true;
 
 /// Configures routing accross all application
 GoRouter configAppRouting() {

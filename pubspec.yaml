@@ -19,6 +19,7 @@ dependencies:
   toggle_switch: ^2.1.0
   logger: ^2.0.1
   image_picker: ^1.0.2
+  bot_toast: ^4.0.4
 
 dev_dependencies:
   flutter_test:

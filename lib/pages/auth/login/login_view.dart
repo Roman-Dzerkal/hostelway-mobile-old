@@ -1,12 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hostelway/helpers/custom_color.dart';
 import 'package:hostelway/helpers/typography.dart';
 import 'package:hostelway/pages/auth/login/login_vm.dart';
 import 'package:stacked/stacked.dart';
-import 'package:hostelway/api_service.dart';
-import 'package:go_router/go_router.dart';
-import 'package:hostelway/helpers/custom_color.dart';
-import 'package:hostelway/helpers/typography.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({Key? key}) : super(key: key);

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hostelway/api_service.dart';
 import 'package:hostelway/helpers/configs.dart';
-import 'package:hostelway/models/user_model.dart';
 import 'package:stacked/stacked.dart';
 
 class RegistrationViewModel extends BaseViewModel {

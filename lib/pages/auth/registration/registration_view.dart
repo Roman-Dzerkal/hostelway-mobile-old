@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:hostelway/helpers/custom_color.dart';
-import 'package:hostelway/helpers/typography.dart';
 import 'package:hostelway/pages/auth/registration/registration_vm.dart';
 import 'package:stacked/stacked.dart';
 import 'package:toggle_switch/toggle_switch.dart';
@@ -28,15 +27,15 @@ class RegistrationView extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    SizedBox(height: 60),
-                    Text(
+                    const SizedBox(height: 60),
+                    const Text(
                       'Sign Up',
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(height: 40),
+                    const SizedBox(height: 40),
                     Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
@@ -54,7 +53,7 @@ class RegistrationView extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(height: 30),
+                    const SizedBox(height: 30),
                     Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
@@ -72,7 +71,7 @@ class RegistrationView extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(height: 30),
+                    const SizedBox(height: 30),
                     Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
@@ -101,7 +100,7 @@ class RegistrationView extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(height: 30),
+                    const SizedBox(height: 30),
                     Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
@@ -146,7 +145,7 @@ class RegistrationView extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(height: 30),
+                    const SizedBox(height: 30),
                     Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
@@ -166,7 +165,7 @@ class RegistrationView extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(height: 30),
+                    const SizedBox(height: 30),
                     ToggleSwitch(
                       minWidth: 90.0,
                       cornerRadius: 20.0,
@@ -188,7 +187,7 @@ class RegistrationView extends StatelessWidget {
                         model.selectedRoleIndex = index!;
                       },
                     ),
-                    SizedBox(height: 30),
+                    const SizedBox(height: 30),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -223,7 +222,7 @@ class RegistrationView extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     RichText(
                       softWrap: true,
                       text: TextSpan(

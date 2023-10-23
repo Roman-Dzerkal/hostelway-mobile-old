@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:hostelway/helpers/configs.dart';
 import 'package:hostelway/helpers/custom_color.dart';
 import 'package:hostelway/helpers/widget_helpers/hotel_widget.dart';
+import 'package:hostelway/pages/auth/login/login_view.dart';
 import 'package:hostelway/pages/rooms/rooms_view.dart';
 
 import 'models/hotel_model.dart';
@@ -52,6 +53,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          backgroundColor: CustomColors.primaryColor,
           title: const Text('Home'),
           centerTitle: true,
           actions: [

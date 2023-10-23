@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hostelway/helpers/custom_color.dart';
 
 class RoomsPage extends StatelessWidget {
   RoomsPage({Key? key}) : super(key: key);
@@ -7,6 +8,7 @@ class RoomsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: CustomColors.primaryColor,
         title: Text("Booked Rooms"),
         leading: IconButton(
             icon: Icon(Icons.arrow_back),

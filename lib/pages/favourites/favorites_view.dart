@@ -19,7 +19,8 @@ List<Hotel> hotels = [
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Title'),
+        backgroundColor: CustomColors.primaryColor,
+        title: const Text('Favorites'),
         centerTitle: true,
         actions: [
           PopupMenuButton(

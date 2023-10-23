@@ -1,23 +1,76 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:stacked/stacked.dart';
 import 'profile_vm.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:hostelway/helpers/custom_color.dart';
 import 'package:hostelway/helpers/typography.dart';
 
-class ProfileView extends StatelessWidget {
-  const ProfileView({Key? key}) : super(key: key);
 
+class ProfileView extends StatefulWidget {
+  const ProfileView({super.key});
+
+  @override
+  State<ProfileView> createState() => _ProfileView();
+}
+
+
+class _ProfileView extends State<ProfileView> {
+  bool editable = false;
+  //const _ProfileView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    
     return ViewModelBuilder<ProfileViewModel>.reactive(
       viewModelBuilder: () => ProfileViewModel(),
       builder: (context, model, child) {
         return GestureDetector(
           onTap: () => FocusScope.of(context).requestFocus(model.unfocusNode),
           child: Scaffold(
-            backgroundColor: const Color(0xfffbfbfb),
+            backgroundColor:const  Color.fromARGB(255, 240, 240, 240),
+            appBar: AppBar(
+              backgroundColor: CustomColors.primaryColor,
+              title: !editable
+              ? const Text("Profile") : const Text("Edit Profile") 
+              ,
+              /*leading: IconButton(
+                  icon: Icon(Icons.arrow_back),
+                  onPressed: () {
+                    if (Navigator.of(context).canPop()) {
+                      Navigator.of(context).pop();
+                    }
+                  }),*/
+                   actions: [
+                      PopupMenuButton(
+                        itemBuilder: (BuildContext context) {
+                          return [
+                            if(!editable) PopupMenuItem(
+                              child: Text("Edit profile"),
+                              value: "edit",
+                            ),
+                            PopupMenuItem(
+                              child: Text("Logout"),
+                              value: "logout",
+                            ),
+                          ];
+                        },
+                        onSelected: (value) {
+                          if (value == "edit") {
+                            /*Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => ProfileEditView()),*/ //переход на новую стр. редактирования 
+                            setState(() {
+                                editable = !editable; 
+                              });
+                          } else if (value == "logout") {
+                            GoRouter.of(context).go('/login');
+                          }
+                        },
+                      ),
+                    ],
+            ),
+            //backgroundColor: Color.fromARGB(255, 55, 53, 53),
             body: SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
@@ -25,10 +78,10 @@ class ProfileView extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    SizedBox(height: 40),
+                   
                      Align(
                       alignment: Alignment.center,
-                      child: Text('Edit Profile', style: headlineLarge),
+                      //child: Text('Edit Profile', style: headlineLarge),
                     ),
                     SizedBox(height: 40),
                     CircleAvatar(
@@ -42,6 +95,7 @@ class ProfileView extends StatelessWidget {
                         //boxShadow: model.shadows,
                       ),
                       child: TextFormField(
+                        enabled: editable,
                         controller: model.nameController,
                         decoration: InputDecoration(
                           filled: true,
@@ -61,6 +115,7 @@ class ProfileView extends StatelessWidget {
                         //boxShadow: model.shadows,
                       ),
                       child: TextFormField(
+                        enabled: editable,
                         controller: model.emailController,
                         decoration: InputDecoration(
                           filled: true,
@@ -81,6 +136,7 @@ class ProfileView extends StatelessWidget {
                       ),
                       child: Form(
                         child: TextFormField(
+                          enabled: editable,
                           controller: model.phoneController,
                           decoration: InputDecoration(
                             filled: true,
@@ -107,6 +163,7 @@ class ProfileView extends StatelessWidget {
                             model.updateSelectedGender(newValue);
                           }
                         },
+                      
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: const Color(0xfffbfbfb),
@@ -125,37 +182,48 @@ class ProfileView extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 40), 
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Expanded(
-                          child: InkWell(
-                            onTap: () async {
-                              // ... Save logic ...
-                            },
-                            child: Container(
-                              height: size.height * 0.06, 
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                gradient: LinearGradient(colors: [
-                                  CustomColors.primaryColor,
-                                  CustomColors.secondaryColor,
-                                ]),
-                              ),
-                              child: Center( 
-                                child: Text(
-                                  'Save',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
+                  if (editable)
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          setState(() {
+                                editable = !editable; 
+                              });
+                        },
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          primary: Colors.transparent,
+                          onPrimary: Colors.white,
+                          elevation: 0,
+                        ),
+                        child: Ink(
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: [
+                                CustomColors.primaryColor,
+                                CustomColors.secondaryColor,
+                              ],
+                            ),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Container(
+                            constraints: BoxConstraints(minWidth: 88.0, minHeight: 36.0),
+                            alignment: Alignment.center,
+                            child: Text(
+                              'Save',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
                               ),
                             ),
                           ),
                         ),
-                      ],
+                      ),
                     ),
                   ],
                 ),

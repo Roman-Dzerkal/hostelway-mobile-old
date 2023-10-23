@@ -22,7 +22,7 @@ GoRouter configAppRouting() {
     GoRoute(
       path: '/profile',
       name: 'Main profile page',
-      builder: (context, state) => const ProfileView(),
+      builder: (context, state) =>  const ProfileView(),
     ),
   ]);
 }

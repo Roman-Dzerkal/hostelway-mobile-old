@@ -1,31 +1,143 @@
-import 'package:firebase_core/firebase_core.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
-import 'package:hostelway/app_state.dart';
-import 'package:hostelway/firebase_options.dart';
+import 'package:go_router/go_router.dart';
+import 'package:hostelway/helpers/configs.dart';
+import 'package:hostelway/helpers/custom_color.dart';
+import 'package:hostelway/helpers/widget_helpers/hotel_widget.dart';
+import 'package:hostelway/pages/auth/login/login_view.dart';
+import 'package:hostelway/pages/create_hotel/hotel_creation_view.dart';
+import 'package:hostelway/pages/create_hotel/hotel_creation_vm.dart';
+import 'package:hostelway/pages/rooms/rooms_view.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'models/hotel_model.dart';
+import 'pages/favourites/favorites_view.dart';
+import 'pages/profile/profile_view.dart';
+
+/*List<Hotel> hotels = [
+  Hotel(title: 'Friends', location: 'Dnipro', price: 690),
+  Hotel(title: 'Lviv hotel', location: 'Lviv', price: 4500),
+  Hotel(title: 'Yeremche hotel', location: 'Yaremche', price: 3000),
+];*/
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // final GoRouter router = configAppRouting();
 
-  AppState.instance.firebaseApp = await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  logger.i('Welcome to Hostelway!');
 
-  runApp(const MyApp());
+  // BotToastInit(); // Инициализация BotToast версии 3.x.x
+
+  runApp(const MaterialApp(
+    debugShowCheckedModeBanner: false,
+    title: 'HostelWay',
+    home: HomePage(),
+  ));
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
-  // This widget is the root of your application.
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int selectedIndex = 0;
+  List<Widget> _pages = [
+    HomePage(),
+    FavouritesPage(),
+    RoomsPage(),
+    ProfileView(),
+
+  ];
+
+ final HotelCreationViewModel model = HotelCreationViewModel();
+ 
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+    return Scaffold(
+        appBar: AppBar(
+          backgroundColor: CustomColors.primaryColor,
+          title: const Text('Home'),
+          centerTitle: true,
+          /*actions: [
+            PopupMenuButton(
+              icon: Icon(Icons.sort),
+              itemBuilder: (context) {
+                return [
+                  PopupMenuItem(
+                      child: Text('Sort by price'),
+                      onTap: () {
+                        setState(() {
+                          hotels.sort(
+                            (a, b) {
+                              return a.price.compareTo(b.price);
+                            },
+                          );
+                        });
+                      }),
+                  PopupMenuItem(
+                      child: Text('Sort by title'),
+                      onTap: () {
+                        setState(() {
+                          hotels.sort(
+                            (a, b) {
+                              return a.title.compareTo(b.title);
+                            },
+                          );
+                        });
+                      })
+                ];
+              },
+            )
+          ],*/
+        ),
+       
+        /*body: ListView.builder(
+            itemCount: hotels.length,
+            itemBuilder: (context, index) {
+              return HotelWidget(hotels.elementAt(index));
+            }
+          ),*/
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text('Name: ${model.name}'),
+            Text('Description: ${model.description}'),
+            Text('Price: ${model.price}'),
+          ],
+        ),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      bottomNavigationBar:  BottomNavigationBar(items: [
+        BottomNavigationBarItem(icon: Icon(Icons.home, color: CustomColors.primaryColor), label: 'search'), 
+         BottomNavigationBarItem(icon: Icon(Icons.favorite, color: CustomColors.primaryColor), label: 'favorite'), 
+         BottomNavigationBarItem(icon: Icon(Icons.list, color: CustomColors.primaryColor), label: 'rooms'),
+         BottomNavigationBarItem(icon: Icon(Icons.account_circle, color: CustomColors.primaryColor), label: 'profile')
+      ],
+       currentIndex: selectedIndex,
+          onTap: (int index) {
+            // Обработчик нажатия на вкладку
+            setState(() {
+              selectedIndex = index;
+            }); 
+            Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => _pages.elementAt(index)),
+            );
+          },
+      ),  
+        floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.add),
+          backgroundColor: CustomColors.primaryColor,
+          onPressed: ()
+          {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => CreateHotelPage()),
+            );
+          },
+        ),     
     );
   }
 }

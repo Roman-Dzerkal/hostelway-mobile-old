@@ -11,9 +11,16 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.2
-  firebase_auth: ^4.7.2
-  firebase_core: ^2.15.0
-  cloud_firestore: ^4.8.4
+  stacked: ^3.4.1
+  google_fonts: ^5.1.0
+  path_provider: ^2.0.15
+  dio: ^5.3.2
+  go_router: ^10.1.0
+  toggle_switch: ^2.1.0
+  logger: ^2.0.1
+  image_picker: ^1.0.2
+  bot_toast: ^4.0.4
+  shared_preferences: ^2.2.2
 
 dev_dependencies:
   flutter_test:
@@ -22,5 +29,7 @@ dev_dependencies:
   flutter_lints: ^2.0.0
 
 flutter:
-
+  assets:
+    - assets/
+    - assets/images/
   uses-material-design: true
